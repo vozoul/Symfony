@@ -1,6 +1,17 @@
-# Symfony 4.3
+# Quack Net
+###### (Symfony framework)
 
 ---
+if you want to use it
+
+    download it, then in your <project_folder> prompt:
+    
+        $ composer install
+        $ php bin/console server:run
+    
+    Enjoy !!
+    
+else you can do it yourself . . .
 
 ## Install Symfony FrameWork
 
@@ -89,4 +100,4 @@ for each OS.
 
 ---
 
-# THEN LET'S PLAY Symfony FrameWork !!!
+# THEN LET'S PLAY Symfony FrameWork ! Enjoy !
