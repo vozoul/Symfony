@@ -3,35 +3,49 @@
 {% block title %}Quack index{% endblock %}
 
 {% block body %}
-    <h1>Quack index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Content</th>
-                <th>Created_at</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Quack flows</h1>
+
+{#    <table class="table">#}
+{#        <thead>#}
+{#            <tr>#}
+{#                <th>Content</th>#}
+{#                <th>Created_at</th>#}
+{#                <th>actions</th>#}
+{#            </tr>#}
+{#        </thead>#}
+{#        <tbody>#}
         {% for quack in quacks %}
-            <tr>
-                <td>{{ quack.id }}</td>
-                <td>{{ quack.content }}</td>
-                <td>{{ quack.createdAt ? quack.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('quack_show', {'id': quack.id}) }}">show</a>
-                    <a href="{{ path('quack_edit', {'id': quack.id}) }}">edit</a>
-                </td>
-            </tr>
+
+
+{#            <div class="card text-white mb-3" style="max-width: 20rem;">#}
+            <div class="card text-white mb-3">
+                <a href="{{ path('quack_show', {'id': quack.id}) }}">
+    {#                <div class="card-header bg-warning"><a href="{{ path('quack_show', {'id': quack.id}) }}">{{ quack.content }}</a></div>#}
+                    <div class="card-body bg-success">
+    {#                    <h4 class="card-title">Warning card title</h4>#}
+                        <p class="card-text">{{ quack.content }}</p>
+                    </div>
+                    <div class="card-footer bg-warning">QuackMan</div>
+                </a>
+            </div>
+{#            <tr>#}
+{#                <td><a href="{{ path('quack_show', {'id': quack.id}) }}">{{ quack.content }}</a></td>#}
+{#                <td>{{ quack.createdAt ? quack.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
+{#                <td>#}
+{#                    <a href="{{ path('quack_show', {'id': quack.id}) }}">show</a>#}
+{#                    <a href="{{ path('quack_edit', {'id': quack.id}) }}">Edit</a>#}
+{#                    <a href="{{ path('quack_edit', {'id': quack.id}) }}">x</a>#}
+{#                </td>#}
+{#            </tr>#}
         {% else %}
-            <tr>
+{#            <tr>#}
+{#                <td colspan="4">no records found</td>#}
                 <td colspan="4">no records found</td>
-            </tr>
+{#            </tr>#}
         {% endfor %}
-        </tbody>
-    </table>
+{#        </tbody>#}
+{#    </table>#}
 
     <a href="{{ path('quack_new') }}">Create new</a>
 {% endblock %}
