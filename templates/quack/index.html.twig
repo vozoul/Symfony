@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    <h1>Quack flows</h1>
-
+    <a href="{{ path('quack_new') }}" class="float-right" title="Add a quack"><img src="/img/picto/addQuack.png" alt="Add a new quackversation" width="40" height="40"></a>
+    <h1>Quack flow </h1>
 {#    <table class="table">#}
 {#        <thead>#}
 {#            <tr>#}
@@ -17,16 +17,15 @@
 {#        <tbody>#}
         {% for quack in quacks %}
 
-
 {#            <div class="card text-white mb-3" style="max-width: 20rem;">#}
-            <div class="card text-white mb-3">
+            <div class="card mb-3 w-75 mx-auto">
                 <a href="{{ path('quack_show', {'id': quack.id}) }}">
     {#                <div class="card-header bg-warning"><a href="{{ path('quack_show', {'id': quack.id}) }}">{{ quack.content }}</a></div>#}
                     <div class="card-body bg-success">
     {#                    <h4 class="card-title">Warning card title</h4>#}
-                        <p class="card-text">{{ quack.content }}</p>
+                        <p class="card-text">{{ quack.content | raw }}</p>
                     </div>
-                    <div class="card-footer bg-warning">QuackMan</div>
+                    <div class="card-footer bg-warning">ecrit le : {{ quack.createdAt | date('d/m/Y') }} à {{ quack.createdAt | date('H:i') }}</div>
                 </a>
             </div>
 {#            <tr>#}
@@ -47,5 +46,4 @@
 {#        </tbody>#}
 {#    </table>#}
 
-    <a href="{{ path('quack_new') }}">Create new</a>
 {% endblock %}

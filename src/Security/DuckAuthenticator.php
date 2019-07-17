@@ -64,7 +64,7 @@ class DuckAuthenticator extends AbstractFormLoginAuthenticator
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(Duck::class)->findOneBy(['duckname' => $credentials['duckname']]);
+        $user = $this->entityManager->getRepository(Duck::class)->loadUserByUsername($credentials['duckname']);
 
         if (!$user) {
             // fail authentication with a custom error

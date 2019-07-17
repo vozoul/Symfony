@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Duck;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 /**
  * @method Duck|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,12 +13,22 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Duck[]    findAll()
  * @method Duck[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class DuckRepository extends ServiceEntityRepository
+class DuckRepository extends ServiceEntityRepository implements UserLoaderInterface
 {
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Duck::class);
     }
+
+    public function loadUserByUsername($usernameOrEmail)
+    {
+        return $this->createQueryBuilder('input')
+            ->where('input.duckname = :query OR input.email = :query')
+            ->setParameter('query', $usernameOrEmail)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 
     // /**
     //  * @return Duck[] Returns an array of Duck objects

@@ -11,8 +11,8 @@
     </head>
     <body class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-warning">
-            <a class="navbar-brand" href="/">
-                <img src="/img/logo.png" alt="logo" height="40" width="60"> DuckBook
+            <a class="navbar-brand" href="{% if app.user %} {% else %}/{% endif %}">
+                <img src="/img/logo.png" alt="logo" height="40" width="60"> {% if app.user %} {{ app.user.username }} {% else %} DuckBook {% endif %}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -26,10 +26,14 @@
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     {% if app.user %}
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}" title="sign-out"><img src="/img/picto/logOutDuck.png" alt="sign-out" width="30" height="30"></a>
                     </li>
                     {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register/" title="register"><img src="/img/picto/addDuck.png" alt="sign-in" width="30" height="30"></a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/login/" title="sign-in"><img src="/img/picto/logInDuck.png" alt="sign-in" width="30" height="30"></a>
                     </li>
