@@ -3,6 +3,11 @@ security:
         App\Entity\Duck:
             algorithm: auto
 
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_USER, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN: [ROLE_ADMIN, ROLE_USER]
+        ROLE_USER: ROLE_USER
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         # used to reload user from session & other features (e.g. switch_user)
@@ -10,6 +15,11 @@ security:
             entity:
                 class: App\Entity\Duck
                 property: duckname
+#        in_memory:
+#            memory:
+#                users:
+#                    user: {password: userpass, roles: ['ROLE_USER']}
+#                    admin: {password: adminpass, roles: ['ROLE_ADMIN']}
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -22,7 +32,7 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: quack_index
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

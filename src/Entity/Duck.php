@@ -3,12 +3,16 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DuckRepository")
  * @UniqueEntity(fields={"duckname"}, message="There is already an account with this duckname")
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\Table(name="duck")
  */
 class Duck implements UserInterface
 {

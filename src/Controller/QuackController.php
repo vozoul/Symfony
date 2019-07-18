@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Quack;
+use App\Entity\Upload;
 use App\Form\QuackType;
 use App\Repository\QuackRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,6 +32,7 @@ class QuackController extends AbstractController
     public function new(Request $request): Response
     {
         $quack = new Quack();
+        $Upload = new Upload();
         $form = $this->createForm(QuackType::class, $quack);
         $form->handleRequest($request);
 
